@@ -17,29 +17,50 @@
                 <img src="assets/images/Logo_AE.png" class="logo" alt="Amazing Events logo">
             </div>
             <div class="container col-8 gap-2 justify-content-center">
-                <a href="upcoming.html" role="button" class="btn btn-outline-danger col-2 fw-bolder pt-3">Home</a>
+                <a href="index.html" role="button" class="btn btn-outline-danger col-2 fw-bolder pt-3">Home</a>
                 <a href="upcoming.html" role="button" class="btn btn-outline-danger col-2 fw-bolder">Upcoming Events</a>
-                <a href="upcoming.html" role="button" class="btn btn-outline-danger col-2 fw-bolder pt-3" >Past Events</a>
-                <a href="upcoming.html" role="button" class="btn btn-outline-danger col-2 fw-bolder pt-3">Contact</a>
-                <a href="upcoming.html" role="button" class="btn btn-outline-danger col-2 fw-bolder pt-3">Stats</a>
+                <a href="past.html" role="button" class="btn btn-outline-danger col-2 fw-bolder pt-3" >Past Events</a>
+                <a href="#" role="button" class="btn btn-outline-danger col-2 fw-bolder pt-3 disabled">Contact</a>
+                <a href="stats.html" role="button" class="btn btn-outline-danger col-2 fw-bolder pt-3">Stats</a>
             </div>
         </nav>
         <div class="container-fluid d-flex justify-content-between text-center text-white bg-danger py-4">
-            <a class="col-1 text-white pt-3" href="">
+            <a class="col-1 text-white pt-3" href="past.html">
                 <i class="fa-solid fa-chevron-left fa-xl"></i>
             </a>
             <h1 class="col-10 mb-0">Contact Us</h1>
-            <a class="col-1 text-white pt-3" href=""> 
+            <a class="col-1 text-white pt-3" href="stats.html"> 
                 <i class="fa-solid fa-chevron-right fa-xl"></i>
             </a>
         </div>
     </header>
  
-    <main class="container-fluid d-flex flex-column align-items-center bg-danger-subtle py-5">
+    <main class="container-fluid d-flex bg-danger-subtle justify-content-center">
 
+        <form action="" class="customerData container-fluid d-flex row py-5 justify-content-center">
 
-    </main>
+            <div class="mb-3">
+                <label for="customerName" class="form-label">Name:</label>
+                <input type="text" class="form-control" id="customerName" placeholder="Your First and Last Name"></input>
+            </div>
+            
+            <div class="mb-3">
+                <label for="customerEmail" class="form-label">Email address:</label>
+                <input type="email" class="form-control" id="customerEmail" placeholder="name@example.com">
+            </div>
+            
+            <div class="mb-3">
+                <label for="customerMessage" class="form-label">Message:</label>
+                <textarea class="form-control" id="customerMessage" rows="3" placeholder="Please write your Request"></textarea>
+            </div>
 
+            <div class="d-flex justify-content-end">
+                <a href="#" class="btn btn-danger">Submit</a>
+            </div>
+        </form>
+            
+        </main>
+        
     <footer class="container-fluid d-flex bg-danger text-white py-4 px-4 justify-content-between" >
         <div class="d-flex col-9 gap-3">
             <i class="col-1 fa-brands fa-square-instagram fa-5x"></i>

@@ -50,6 +50,11 @@ body{
     max-height: 2.2rem;
 }
 
+.customerData{
+    max-width: 70%;
+}
+
+
 @media (max-width: 550px) {
 
 .logo{
@@ -60,7 +65,11 @@ body{
 
 h2{
     font-size: 1rem;
-    padding-right: 20px;
 }
+
+.customerData{
+    max-width: 100%;
+}
+
 
 }
