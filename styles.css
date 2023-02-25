@@ -9,6 +9,11 @@ body{
     background-color: palevioletred;
 }
 
+.logo{
+   max-width:100%;
+}
+
+
 .card{
     padding: 1rem;
     min-width: 18rem;
@@ -29,7 +34,6 @@ body{
 .btn-outline-danger{
     height: 3.8rem;
     min-width: 8rem;
-    font-weight: 700;
 }
 
 .btn-danger{
@@ -38,7 +42,6 @@ body{
 }
 
 .form-check{
-    justify-content: center;
     min-width: 8rem;
 }
 
@@ -50,6 +53,14 @@ body{
 @media (max-width: 550px) {
 
 .logo{
-    transform:rotateZ(-90deg) scale(2.5);
+
+    transform:rotateZ(-90deg);
+    max-width: 300px;
 }
+
+h2{
+    font-size: 1rem;
+    padding-right: 20px;
+}
+
 }
