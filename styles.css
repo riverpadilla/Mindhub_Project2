@@ -27,13 +27,18 @@ body{
     border-radius: 10px;
 }
 
+.card>.image-fluid{
+    box-shadow: -5px -5px 5px black;
+    border: solid 3px red;
+    border-radius: 10px;
+}
+
 .card-text{
     height: 50%;
 }
 
 .btn-outline-danger{
     height: 3.8rem;
-    min-width: 8rem;
 }
 
 .btn-danger{
@@ -55,21 +60,53 @@ body{
 }
 
 
-@media (max-width: 550px) {
+@media (max-width: 425px) {
 
-.logo{
+    .logo{
 
-    transform:rotateZ(-90deg);
-    max-width: 300px;
+        transform:rotateZ(-90deg);
+        max-width: 300px;
+    }
+
+    h2{
+        font-size: 1rem;
+    }
+
+    .customerData{
+        max-width: 100%;
+    }
+
+    .eventsStats>table{
+        width: 100%;
+        font-size: 0.8rem;
+    }
+
+    .btn-outline-danger{
+        min-width: 8rem;
+    }
+    
 }
 
-h2{
-    font-size: 1rem;
+@media (min-width: 426px) {
+    
+    .eventsStats{
+        width: 75%;
+    }
+
 }
 
-.customerData{
-    max-width: 100%;
+@media (min-width: 426px) and (max-width: 768px){
+    
+    .btn-outline-danger{
+        height: 3rem;
+        font-size: 0.65rem;
+    }
 }
 
-
+@media (min-width: 769px) and (max-width: 1024px){
+    
+    .btn-outline-danger{
+        height: 3.4rem;
+        font-size: 0.85rem;
+    }
 }
