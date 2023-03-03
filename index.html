@@ -7,7 +7,7 @@
     <script src="https://kit.fontawesome.com/a77a525b21.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
-    <title>Amazing Events</title>
+    <title>Amazing Events - Home</title>
 </head>
 <body class="container-fluid d-flex flex-column px-0">
 
@@ -39,9 +39,13 @@
 
         <div class="container-fluid row d-flex justify-content-center">
 
-            <div class="container-fluid d-flex row col-7 fw-bolder">
+            <!-- <div class="container-fluid d-flex row col-7 fw-bolder"> -->
 
-                <div class="form-check col-2">
+            <div class="container-fluid d-flex row col-7 fw-bolder" id="categories">
+
+            </div> 
+                
+                <!-- <div class="form-check col-2">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheck1">
                     <label class="form-check-label" for="flexCheck1">
                         Category 1
@@ -75,7 +79,7 @@
                         Category 5
                     </label>
                 </div>
-            </div>
+            </div> -->
 
             <div class="input_search d-flex col-5 pt-2">              
                 <input type="text" class="form-control border-end-0 rounded-end-0 pe-0" placeholder="Search" aria-label="Search" spellcheck="false" data-ms-editor="true">
@@ -86,9 +90,9 @@
 
         </div>
 
-        <div class="container-fluid row d-flex justify-content-center gap-5 py-5">
+        <div class="container-fluid row d-flex justify-content-center gap-5 py-5" id="homeCards">
 
-            <div class="card col-2">
+            <!-- <div class="card col-2">
                 <img src="/assets/images/Cinema.jpg" class="card-img-top" alt="Cinema">
                 <div class="card-body">
                     <h5 class="card-title">Cinema</h5>
@@ -158,7 +162,7 @@
                         <a href="details.html" class="btn btn-danger">View Details</a>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </main>
@@ -173,6 +177,9 @@
     </footer>
     
 <!-- Inicio Sección Scripts -->
+    <script src="data.js"></script>
+    <script src="categories.js"></script>
+    <script src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <!-- Final Sección Scripts -->
 
