@@ -10,7 +10,7 @@ listCategories = new Set(listCategories);
 let categoriesTemplate = '';
 for (const category of listCategories){
     categoriesTemplate += `
-    <div class="form-check col-3">
+    <div class="form-check col-4">
     <input class="form-check-input" type="checkbox" value="" id="flexCheck1">
         <label class="form-check-label" for="flexCheck1">
             ${category}
