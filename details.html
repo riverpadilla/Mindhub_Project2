@@ -7,7 +7,7 @@
     <script src="https://kit.fontawesome.com/a77a525b21.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
-    <title>Amazing Events - Upcoming Events</title>
+    <title>Amazing Events - Details</title>
 </head>
 <body class="container-fluid d-flex flex-column px-0">
 
@@ -18,41 +18,40 @@
             </div>
             <div class="container col-8 gap-2 justify-content-center">
                 <a href="index.html" role="button" class="btn btn-outline-danger col-2 fw-bolder pt-3">Home</a>
-                <a href="#" role="button" class="btn btn-outline-danger col-2 fw-bolder disabled">Upcoming Events</a>
+                <a href="upcoming.html" role="button" class="btn btn-outline-danger col-2 fw-bolder">Upcoming Events</a>
                 <a href="past.html" role="button" class="btn btn-outline-danger col-2 fw-bolder pt-3" >Past Events</a>
                 <a href="contact.html" role="button" class="btn btn-outline-danger col-2 fw-bolder pt-3">Contact</a>
                 <a href="stats.html" role="button" class="btn btn-outline-danger col-2 fw-bolder pt-3">Stats</a>
             </div>
         </nav>
-        <div class="container-fluid d-flex justify-content-between text-center text-white bg-danger py-4">
-            <a class="col-1 text-white pt-3" href="index.html">
-                <i class="fa-solid fa-chevron-left fa-xl"></i>
-            </a>
-            <h1 class="col-10 mb-0">Upcoming Events</h1>
-            <a class="col-1 text-white pt-3" href="past.html"> 
-                <i class="fa-solid fa-chevron-right fa-xl"></i>
-            </a>
-        </div>
     </header>
  
-    <main class="container-fluid d-flex flex-column align-items-center bg-danger-subtle py-5">
+    <main class="container-fluid d-flex bg-danger-subtle justify-content-center py-5">
 
-        <div class="container-fluid row d-flex justify-content-center ">
-
-            <div class="container-fluid d-flex row col-7 fw-bolder" id="categories">
+        <div class="d-flex row justify-content-center gap-2">
+            <div class="card d-flex col-5 justify-content-center">
+                <img src="/assets/images/Cinema.jpg" class="image-fluid" alt="Cinema">
             </div>
+            <div class="card d-flex col-5">
+                <div class="card-body border border-3 border-danger rounded">
+                    <h5 class="card-title">Cinema</h5>
+                    <p>Date: xx/xx/xxxx</p>
+                    <p>Description: Lorem, ipsum dolor sit amet 
+                        consectetur adipisicing elit. Voluptates consequatur quis autem 
+                        sunt laudantium vitae, incidunt itaque quia quod unde commodi 
+                        quo aut odio facere voluptas sequi ipsa possimus voluptatem!</p>
+                    <p>Category: Category 1</p>
+                    <p>Place:Neuquén, Argentina</p>
+                    <p>Capacity: xxxx participants</p>
+                    <p>Assistence: yyyy participants</p>
+                    <p>Price: zzzz</p>
 
-            <div class="input_search d-flex col-5 pt-2">              
-                <input type="text" class="form-control border-end-0 rounded-end-0 pe-0" placeholder="Search" aria-label="Search" spellcheck="false" data-ms-editor="true">
-                <span class=" input-group-text bg-dark text-white justify-content-center rounded-start-0">
-                    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-                </span>
+
+
+                </div>
             </div>
-
         </div>
-
-        <div class="container-fluid row d-flex justify-content-center gap-5 py-5" id="upcomingCards">
-        </div>
+            
     </main>
 
     <footer class="container-fluid d-flex bg-danger text-white py-4 px-4 justify-content-between" >
@@ -65,10 +64,7 @@
     </footer>
     
 <!-- Inicio Sección Scripts -->
-<script src="data.js"></script>
-<script src="categories.js"></script>
-<script src="upcoming.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <!-- Final Sección Scripts -->
 
 </body>
