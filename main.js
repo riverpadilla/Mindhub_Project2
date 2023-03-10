@@ -1,26 +1,41 @@
+// Llamado a funcion categories() y se inyecta valor retornado a HTML
+document.getElementById('categories').innerHTML = categories();
+document.getElementById('eventsCards').innerHTML=eventsCards();
 
-document.getElementById('categories').innerHTML=categoryFilter();
 
-function cardFilter(eventType){
+//Funcion que 
+function cardList(eventType){
+
     const allEvents = data.events;
     let filteredEvents=[];
-    let cardsTemplate = '';
-
-
+    
     switch (eventType){
-        case 1:
+        case "web1":
             filteredEvents = allEvents.filter(oneEvent => oneEvent.date < data.currentDate)
             break;
-        case 2:
+        case "web2":
             filteredEvents = allEvents.filter(oneEvent => oneEvent.date > data.currentDate)
             break;
         default:
             filteredEvents = allEvents;
         }
 
-    console.log(filteredEvents);
+    return filteredEvents
+}
 
-    for (let event of filteredEvents){
+
+
+function eventsCards(){
+
+    let TitleId = document.querySelector('h1').id;
+
+    const filteredEvents = cardList(TitleId)
+
+    const newfilteredEvents=categoryFilter(filteredEvents);
+
+    let cardsTemplate = '';
+
+    for (let event of newfilteredEvents){
             cardsTemplate += 
             `
             <div class="card col-2">
@@ -40,7 +55,10 @@ function cardFilter(eventType){
     return cardsTemplate;
 }
 
-function categoryFilter(){
+
+
+
+function categoryList(){
 
     let listCategories=[];
 
@@ -50,18 +68,70 @@ function categoryFilter(){
 
     listCategories = new Set(listCategories);
 
+    return listCategories;
+}
+
+function categories(){
+
+    let listCategories = categoryList();
+
     let categoriesTemplate = '';
-    for (const category of listCategories){
+    let checkId;
+    let labelId;
+    let i=0;
+    for (const category of listCategories){     
+        checkId="checkBoxId"+i;
+        labelId="checkLabelId"+i;
         categoriesTemplate += `
         <div class="form-check col-4">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheck1">
-            <label class="form-check-label" for="flexCheck1">
+        <input class="form-check-input" 
+            type="checkbox" 
+            value=${i} 
+            id=${checkId}
+            onclick="drawCards()">
+            <label class="form-check-label" id=${labelId} for=${checkId}>
                 ${category}
             </label>
         </div>
         `
+        i+=1;
     }
 
     return categoriesTemplate;
+}
+
+function categoryFilter(filteredEvents){
+
+    let newfilteredEvents=filteredEvents;
+    const categoryNode = document.querySelectorAll('.form-check-input');
+    
+    const check = Array.from(categoryNode).some(category => category.checked);
+    
+    if (check){
+        newfilteredEvents=[];
+        let tempEvents=[]
+        for(category of categoryNode){
+            tempEvents = filteredEvents.filter(events =>{
+                if ((category.checked) && (events.category==category.labels[0].innerText)){
+                    return true
+                } else {
+                    return false
+                }
+            })
+            newfilteredEvents=newfilteredEvents.concat(tempEvents);
+        } 
+    }
+          
+    return newfilteredEvents
+}
+
+function searchFilter(){
+    
+}
+
+function drawCards(){
+
+    document.getElementById('eventsCards').innerHTML=eventsCards();
+
 }
 

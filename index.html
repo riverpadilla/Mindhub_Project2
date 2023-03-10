@@ -25,11 +25,11 @@
             </div>
         </nav>
         <div class="container-fluid d-flex justify-content-between text-center text-white bg-danger py-4">
-            <a class="col-1 text-white pt-3" href="stats.html">
+            <a class="col-1 text-white pt-3" href="stats.html" title="Stats web page">
                 <i class="fa-solid fa-chevron-left fa-xl"></i>
             </a>
-            <h1 class="col-10 mb-0">Home</h1>
-            <a class="col-1 text-white pt-3" href="upcoming.html"> 
+            <h1 class="col-10 mb-0" id="web0">Home</h1>
+            <a class="col-1 text-white pt-3" href="upcoming.html" title="upcoming web page"> 
                 <i class="fa-solid fa-chevron-right fa-xl"></i>
             </a>
         </div>
@@ -39,48 +39,10 @@
 
         <div class="container-fluid row d-flex justify-content-center">
 
-            <!-- <div class="container-fluid d-flex row col-7 fw-bolder"> -->
-
             <div class="container-fluid d-flex row col-7 fw-bolder" id="categories">
 
-            </div> 
-                
-                <!-- <div class="form-check col-2">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheck1">
-                    <label class="form-check-label" for="flexCheck1">
-                        Category 1
-                    </label>
-                </div>
-                
-                <div class="form-check col-2">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheck2">
-                    <label class="form-check-label" for="flexCheck2">
-                        Category 2
-                    </label>
-                </div>
-                
-                <div class="form-check col-2">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheck3">
-                    <label class="form-check-label" for="flexCheck3">
-                        Category 3
-                    </label>
-                </div>
-                
-                <div class="form-check col-2">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheck4">
-                    <label class="form-check-label " for="flexCheck4">
-                        Category 4
-                    </label>
-                </div>
-                
-                <div class="form-check col-2">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheck5">
-                    <label class="form-check-label" for="flexCheck5">
-                        Category 5
-                    </label>
-                </div>
-            </div> -->
-
+            </div>          
+               
             <div class="input_search d-flex col-5 pt-2">              
                 <input type="text" class="form-control border-end-0 rounded-end-0 pe-0" placeholder="Search" aria-label="Search" spellcheck="false" data-ms-editor="true">
                 <span class=" input-group-text bg-dark text-white justify-content-center rounded-start-0">
@@ -90,79 +52,7 @@
 
         </div>
 
-        <div class="container-fluid row d-flex justify-content-center gap-5 py-5" id="homeCards">
-
-            <!-- <div class="card col-2">
-                <img src="/assets/images/Cinema.jpg" class="card-img-top" alt="Cinema">
-                <div class="card-body">
-                    <h5 class="card-title">Cinema</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <div class="d-flex align-middle justify-content-between">
-                        <span class="price">Price: $2000</span>
-                        <a href="details.html" class="btn btn-danger">View Details</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card col-2">
-                <img src="/assets/images/Costume_Party.jpg" class="card-img-top" alt="Costume Party">
-                <div class="card-body">
-                    <h5 class="card-title">Costume Party</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <div class="d-flex align-middle justify-content-between">
-                        <span class="price">Price: $2000</span>
-                        <a href="details.html" class="btn btn-danger">View Details</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card col-2">
-                <img src="/assets/images/Food_Fair.jpg" class="card-img-top" alt="Food Fair">
-                <div class="card-body">
-                    <h5 class="card-title">Food Fair</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <div class="d-flex align-middle justify-content-between">
-                        <span class="price">Price: $2000</span>
-                        <a href="details.html" class="btn btn-danger">View Details</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card col-2">
-                <img src="/assets/images/Marathon.jpg" class="card-img-top" alt="Maraton">                
-                <div class="card-body">
-                    <h5 class="card-title">Maraton</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <div class="d-flex align-middle justify-content-between">
-                        <span class="price">Price: $2000</span>
-                        <a href="details.html" class="btn btn-danger">View Details</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card col-2">
-                <img src="/assets/images/Museum_Tour.jpg" class="card-img-top" alt="Museum">
-                <div class="card-body">
-                    <h5 class="card-title">Museum Tour</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <div class="d-flex align-middle justify-content-between">
-                        <span class="price">Price: $2000</span>
-                        <a href="details.html" class="btn btn-danger">View Details</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card col-2">
-                <img src="/assets/images/Music_Concert.jpg" class="card-img-top" alt="Music Concert">
-                <div class="card-body">
-                    <h5 class="card-title">Music Concert</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <div class="d-flex align-middle justify-content-between">
-                        <span class="price">Price: $2000</span>
-                        <a href="details.html" class="btn btn-danger">View Details</a>
-                    </div>
-                </div>
-            </div> -->
+        <div class="container-fluid row d-flex justify-content-center gap-5 py-5" id="eventsCards">           
 
         </div>
     </main>

@@ -1,2 +1,3 @@
 
-document.getElementById('homeCards').innerHTML=cardFilter(0);
+// document.getElementById('homeCards').innerHTML=eventsCards();
+

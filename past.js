@@ -1,2 +1,2 @@
 
-document.getElementById('pastCards').innerHTML=cardFilter(1);
+// document.getElementById('pastCards').innerHTML=eventsCards();
