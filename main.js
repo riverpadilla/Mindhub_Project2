@@ -99,7 +99,7 @@ function eventsCards(){
                     <h5 class="card-title">${event.name}</h5>
                     <p class="card-text">${event.description}</p>
                     <div class="d-flex align-middle justify-content-between">
-                        <span class="price">Price: ${event.price}</span>
+                        <span class="price">Price: US$ ${event.price}</span>
                         <a href="details.html?id=${event._id}" class="btn btn-danger" id="buttonID_${event._id}">View Details</a>
                     </div>
                 </div>
@@ -195,7 +195,7 @@ function eventDetails(cardId){
                     <p>Place:${detailedEvent.place}</p>
                     <p>Capacity: ${detailedEvent.capacity} participants</p>
                     <p>Assistence: ${detailedEvent.assistance} participants</p>
-                    <p>Price: ${detailedEvent.price}</p>
+                    <p>Price: US$ ${detailedEvent.price}</p>
                 </div>
             </div>
         </div>
