@@ -205,41 +205,61 @@ function eventDetails(cardId){
 }
 
 
-const TitleId = document.querySelector('main').id;
+function mainProgram(){
+    const TitleId = document.querySelector('main').id;
 
-switch(TitleId){
+    switch(TitleId){
 
-    case "web0":
-    case "web1":
-    case "web2":
+        case "web0":
+        case "web1":
+        case "web2":
 
-        document.getElementById('categories').innerHTML = categories();
-        document.querySelector('.searchBar').innerHTML = searchBar();
-        
-        const categoryCheck = document.getElementById('categories');
-        const searchInput = document.querySelector('#searchInput');
-        const searchBtn = document.querySelector('#searchBtn');
-        const eventCards = document.getElementById('eventsCards');
-        
-        document.getElementById('eventsCards').innerHTML=eventsCards()
+            document.getElementById('categories').innerHTML = categories();
+            document.querySelector('.searchBar').innerHTML = searchBar();
+            
+            const categoryCheck = document.getElementById('categories');
+            const searchInput = document.querySelector('#searchInput');
+            const searchBtn = document.querySelector('#searchBtn');
+            const eventCards = document.getElementById('eventsCards');
+            
+            document.getElementById('eventsCards').innerHTML=eventsCards()
 
-        searchBtn.addEventListener('click',drawCards);
-        categoryCheck.addEventListener('click',drawCards)
-        
-        eventCards.addEventListener('click',(e)=> {
-            searchInput.value="";
-            drawCards()
-        });
-        break;
-    case "web4":
-      const queryString = location.search;
-      const params = new URLSearchParams(queryString);
-      const id=params.get("id");
-      eventDetails(id);
+            searchBtn.addEventListener('click',drawCards);
+            categoryCheck.addEventListener('click',drawCards)
+            
+            eventCards.addEventListener('click',(e)=> {
+                searchInput.value="";
+                drawCards()
+            });
+            break;
+        case "web4":
+        const queryString = location.search;
+        const params = new URLSearchParams(queryString);
+        const id=params.get("id");
+        eventDetails(id);
+    }
+
 }
 
+const obtainData = async () =>{
+    try{
+        const response = await fetch(urlAPI)
+        data = await response.json()
+        mainProgram();
+    }
+    catch(error){
+        fetch('./data.json')
+            .then((response) => response.json())
+            .then((json) => {
+                data = json 
+                mainProgram();
+            })
+    }
+}
 
-
+const urlAPI ="https://mindhub-xj03.onrender.com/api/amazing";
+let data;
+obtainData()
 
 
 
