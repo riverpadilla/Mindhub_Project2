@@ -6,7 +6,11 @@
 
 body{
     max-width: 1440px;
-    background-color: palevioletred;
+    background-color:lightpink;
+    background-image: url("./assets/images/Logo_AE.png");
+    background-size: 3%;
+    background-repeat: repeat;
+
 }
 
 .logo{

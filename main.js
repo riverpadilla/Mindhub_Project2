@@ -55,7 +55,7 @@ function searchBar(){
 
 
 
-//Funcion que 
+//Funcion que filtra los datos segun el tipo de eevntos a mostrar: Pasados, Futuros o por defecto, Todos. 
 function cardList(eventType){
 
     const allEvents = data.events;
@@ -63,10 +63,10 @@ function cardList(eventType){
     
     switch (eventType){
         case "web1":
-            filteredEvents = allEvents.filter(oneEvent => oneEvent.date < data.currentDate)
+            filteredEvents = allEvents.filter(oneEvent => oneEvent.date < data.currentDate); //Filtra los eventos Pasados
             break;
         case "web2":
-            filteredEvents = allEvents.filter(oneEvent => oneEvent.date > data.currentDate)
+            filteredEvents = allEvents.filter(oneEvent => oneEvent.date > data.currentDate); //Filtra los eventos futuros
             break;
         default:
             filteredEvents = allEvents;
@@ -78,7 +78,7 @@ function cardList(eventType){
 function eventsCards(){
 
     let TitleId = document.querySelector('main').id;
-    let filteredEvents=[]
+    let filteredEvents=[];
 
     filteredEvents = cardList(TitleId)
 
@@ -179,7 +179,6 @@ function drawCards(){
 function eventDetails(cardId){
 
     const detailedEvent = data.events.filter(dEvent => dEvent._id==cardId)[0];
-    console.log(detailedEvent); 
     detailsStr=
         `
         <div class="container-fluid d-flex row justify-content-center gap-2">
@@ -202,6 +201,142 @@ function eventDetails(cardId){
 
         ` 
     document.querySelector('main').innerHTML = detailsStr;
+}
+
+
+function checkIndex(pastEvents,array, element){
+    let indexes=[];
+    let results=[];
+    let idx = array.indexOf(element);
+    while (idx != -1) {
+        indexes.push(idx);
+        idx = array.indexOf(element, idx + 1);
+    }     
+    for (let index of indexes){
+        results.push({name:pastEvents[index].name,value:array[index]});
+    }
+    return results;
+}
+
+function recordStats(){
+    let pastEvents = cardList("web1");
+    let i=0;
+    let recordArray=[];
+    let recordArray1=[];
+    for (let event of pastEvents){
+            recordArray[i]=event.assistance/event.capacity;
+            recordArray1[i]=event.capacity;
+            i++;
+    } 
+    
+    let element = Math.max(...recordArray)
+    let results=[];
+    results.push(checkIndex(pastEvents,recordArray,element));
+    
+    element = Math.min(...recordArray)
+    results.push(checkIndex(pastEvents,recordArray,element));
+   
+    
+    element = Math.max(...recordArray1)
+    results.push(checkIndex(pastEvents,recordArray1,element));
+
+    let recordItems=0;
+    for(record of results){
+        if (record.length>recordItems){
+          recordItems=record.length  
+        }
+    }
+
+    for(record of results){
+        while (record.length<recordItems){
+            record.push({name:'',value:''});   
+        }
+    }
+
+    let statStr='';
+    let recordStrArray=[[],[],[]];
+    
+    for (let i=0;i<recordItems;i++){
+
+        if (results[0][i].name!=''){
+            recordStrArray[0]=`<td>${results[0][i].name}: ${(results[0][i].value*100).toFixed(2)}% </td>`;
+        }else{
+            recordStrArray[0]=`<td></td>`;
+        }
+        if (results[1][i].name!=''){
+            recordStrArray[1]=`<td>${results[1][i].name}: ${(results[1][i].value*100).toFixed(2)}% </td>`;
+        }else{
+            recordStrArray[1]=`<td></td>`;
+        }
+        if (results[2][i].name!=''){
+            recordStrArray[2]=`<td>${results[2][i].name}: ${results[2][i].value}</td>`;
+        }else{
+            recordStrArray[2]=`<td></td>`;
+        }
+
+        statStr +=
+            `<tr>` +
+            recordStrArray[0] + recordStrArray[1] + recordStrArray[2]
+            + `</tr>` 
+    }
+    return statStr;
+}
+
+
+
+function stats(status){
+    let eventStats =[];
+    let categories = categoryList();
+    let events={};
+    let statStr='';
+
+    switch(status){
+        case 0:
+            events = cardList("web1");
+            for(let category of categories){
+                eventStats.push({name:category,revenue:0,assistance:0, capacity:0,pctAssistance:0})
+                let curretCategory = eventStats[eventStats.length-1];
+                for(let event of events){
+                    if(event.category==category){
+                        curretCategory.revenue += event.price*event.assistance;
+                        curretCategory.assistance += event.assistance;
+                        curretCategory.capacity += event.capacity;
+                    }
+                }
+                curretCategory.pctAssistance = ((curretCategory.assistance/ curretCategory.capacity) * 100).toFixed(2) + '%';
+                statStr +=
+                `<tr>
+                    <td>${category}</td>
+                    <td>USD$ ${curretCategory.revenue}</td>
+                    <td>${curretCategory.pctAssistance}</td>
+                </tr>`
+            }
+        break;
+
+        case 1:
+            events = cardList("web2");
+            for(let category of categories){
+                eventStats.push({name:category,revenue:0,estimate:0, capacity:0,pctAssistance:0})
+                let curretCategory = eventStats[eventStats.length-1];
+                for(let event of events){
+                    if(event.category==category){
+                        curretCategory.revenue += event.price*event.estimate;
+                        curretCategory.estimate += event.estimate;
+                        curretCategory.capacity += event.capacity;
+                    }
+                }
+                curretCategory.pctAssistance = ((curretCategory.estimate/ curretCategory.capacity) * 100).toFixed(2) + '%';
+                statStr +=
+                `<tr>
+                    <td>${category}</td>
+                    <td>USD$ ${curretCategory.revenue}</td>
+                    <td>${curretCategory.pctAssistance}</td>
+                </tr>`
+            }
+        break;
+    }
+    console.log(eventStats);
+    return statStr;
 }
 
 
@@ -233,10 +368,16 @@ function mainProgram(){
             });
             break;
         case "web4":
-        const queryString = location.search;
-        const params = new URLSearchParams(queryString);
-        const id=params.get("id");
-        eventDetails(id);
+            document.getElementById('stats-records').innerHTML = recordStats();
+            document.getElementById('stats-past').innerHTML = stats(0);
+            document.getElementById('stats-upcoming').innerHTML = stats(1);
+
+            break;
+        case "web5":
+            const queryString = location.search;
+            const params = new URLSearchParams(queryString);
+            const id=params.get("id");
+            eventDetails(id);
     }
 
 }
@@ -260,11 +401,3 @@ const obtainData = async () =>{
 const urlAPI ="https://mindhub-xj03.onrender.com/api/amazing";
 let data;
 obtainData()
-
-
-
-
-
-
-
-
