@@ -1,11 +1,14 @@
-// Llamado a funcion categories() y se inyecta valor retornado a HTML
+// ARCHIVO JAVASCRIPT MAIN.JS CREADO POR RIVELINO PADILLA - PROYECTO AMAZING EVENTS - MINDHUB FE13-TN
+// Archivo principal con general con funciones para cálculos y actualización de diferentes paginas HTML del proyecto
 
 
-
-
+// Funcion que genera el código HTML para los checkboxes de categorias en las paginas HMTL para Home, Upcoming Events y Past Events
+// basado en las categorias que aparecen en el API y para evitar repetir el mismo código en las tres paginas
+// Utiliza la funcion listCategories() para generar la lista de categorias
+// Retorna un string
 function categories(){
 
-    let listCategories = categoryList();
+    let listCategories = categoryList(); // Asigna a variable un set de categorias retornado por función categoryList()
 
     let categoriesTemplate = '';
     let checkId;
@@ -15,47 +18,51 @@ function categories(){
         checkId="checkBoxId"+i;
         labelId="checkLabelId"+i;
         categoriesTemplate += `
-        <div class="form-check col-4">
-        <input class="form-check-input" 
-            type="checkbox" 
-            value=${i} 
-            id=${checkId}>
-            <label class="form-check-label" id=${labelId} for=${checkId}>
-                ${category}
-            </label>
-        </div>
-        `
+            <div class="form-check col-4">
+            <input class="form-check-input" 
+                type="checkbox" 
+                value=${i} 
+                id=${checkId}>
+                <label class="form-check-label" id=${labelId} for=${checkId}>
+                    ${category}
+                </label>
+            </div>
+            `
         i+=1;
     }
 
     return categoriesTemplate;
 }
+//********************************************************************************************************************
 
 
-
+//Función que genera el código HTML para la barra de busqueda en las paginas HMTL para Home, Upcoming Events y Past Events
+// para evitar repetir el mismo código en las 3 paginas.
+// Retorna un string.
 function searchBar(){
 
     let searchBarStr=
-    `
-    <input class="form-control border-end-0 rounded-end-0 pe-0"
-        type="text" 
-        placeholder="Search  by Event's Name" 
-        aria-label="Search" 
-        spellcheck="false" 
-        data-ms-editor="true"
-        aria-describedby="search"
-        id="searchInput">
-    <button class="btn bg-dark text-white rounded-start-0 py-0" type="button" title="btn-search" id="searchBtn">
-        <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-    </button>
-    `
+        `
+        <input class="form-control border-end-0 rounded-end-0 pe-0"
+            type="text" 
+            placeholder="Search  by Event's Name" 
+            aria-label="Search" 
+            spellcheck="false" 
+            data-ms-editor="true"
+            aria-describedby="search"
+            id="searchInput">
+        <button class="btn bg-dark text-white rounded-start-0 py-0" type="button" title="btn-search" id="searchBtn">
+            <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+        </button>
+        `
 
     return searchBarStr
 }
+//********************************************************************************************************************
 
 
-
-//Funcion que filtra los datos segun el tipo de eevntos a mostrar: Pasados, Futuros o por defecto, Todos. 
+// Funcion que retorna un array filtrando los datos del API segun el tipo de eventos a mostrar: Pasados, Futuros o Todos(Por Defecto).
+// Require un parámetro para ejecuarse: "web1" si son eventos pasados, "web2" si son eventos futuros u otro si son todos los eventos
 function cardList(eventType){
 
     const allEvents = data.events;
@@ -74,17 +81,25 @@ function cardList(eventType){
 
     return filteredEvents
 }
+//********************************************************************************************************************
 
+
+//Función que genera el código HTML para las tarjetas de eventos en las paginas HMTL para Home, Upcoming Events y Past Events
+// para evitar repetir el mismo código en las 3 paginas.
+// Utiliza la funcion cardList() para para filtar los eventos Pasados, Futuros o Todos(Por Defecto).
+// Utiliza la función categoryFilter() para filtar por categoria seleccionada en checkbox
+// Utiliza la función searchFilter() para filtar por cadena introducida en caja de busqueda
+// Retorna un string.
 function eventsCards(){
 
     let TitleId = document.querySelector('main').id;
     let filteredEvents=[];
 
-    filteredEvents = cardList(TitleId)
+    filteredEvents = cardList(TitleId); // Asigna a valiable un array filtrado por tipo de evento : pasado, futuro o todos
 
-    filteredEvents = categoryFilter(filteredEvents);
+    filteredEvents = categoryFilter(filteredEvents); // Asigna a variable un array filtrado por categorias seleccionadas en checkbox
 
-    filteredEvents = searchFilter(filteredEvents);
+    filteredEvents = searchFilter(filteredEvents); // Asigna a variable un array filatrdo por cadena introducida en caja de busqueda
 
 
     let cardsTemplate = '';
@@ -109,7 +124,11 @@ function eventsCards(){
 
     return cardsTemplate;
 }
+//********************************************************************************************************************
 
+
+// Funcion que retorna un set o lista de categorias a partir de las categorias presentes en los datos del API
+// el set retornado filtra automaticamente para que las categorias sean unicas (no estan repetidas en el set)
 function categoryList(){
 
     let listCategories=[];
@@ -122,7 +141,11 @@ function categoryList(){
 
     return listCategories;
 }
+//********************************************************************************************************************
 
+
+// Funcion que retorna un array filtrado por las categorias seleccionadas en los checkboxes
+// Requiere como parámetro el array que se desea filtrar 
 function categoryFilter(filteredEvents){
 
     let newfilteredEvents=filteredEvents;
@@ -147,7 +170,10 @@ function categoryFilter(filteredEvents){
           
     return newfilteredEvents
 }
+//********************************************************************************************************************
 
+// Funcion que retorna un array filtrado por la cadena de texto en la caja de busqueda
+// Requiere como parámetro el array que se desea filtrar
 function searchFilter(filteredEvents){
     
     let newfilteredEvents = filteredEvents;
@@ -170,15 +196,26 @@ function searchFilter(filteredEvents){
     }
     return newfilteredEvents;
 }
+//********************************************************************************************************************
 
 
+// Función que inyecta el código HTML en las paginas Home, Upcoming Events y Past Events para que se dibujen las tarjetas de eventos
 function drawCards(){
-    document.getElementById('eventsCards').innerHTML=eventsCards();
+    return document.getElementById('eventsCards').innerHTML=eventsCards();
 }
+//********************************************************************************************************************
 
+// Funcion que inyecta el código HTML en la pagina Details para que se dibuje la tarjeta del evento con detallada
+// Requiere como parámetro el Id del evento del cualse desean los detalles
 function eventDetails(cardId){
 
     const detailedEvent = data.events.filter(dEvent => dEvent._id==cardId)[0];
+    let assistanceStr='';
+    if(data.currentDate>detailedEvent.date){
+        assistanceStr=` <p>Assistence: ${new Intl.NumberFormat('en-US').format(detailedEvent.assistance)} participants</p>`
+    }else  assistanceStr=` <p>Assistence: ${new Intl.NumberFormat('en-US').format(detailedEvent.estimate)} participants (Estimated)</p>`
+
+    
     detailsStr=
         `
         <div class="container-fluid d-flex row justify-content-center gap-2">
@@ -191,54 +228,63 @@ function eventDetails(cardId){
                     <p>Date: ${detailedEvent.date}</p>
                     <p>Description: ${detailedEvent.description}</p>
                     <p>Category: ${detailedEvent.category}</p>
-                    <p>Place:${detailedEvent.place}</p>
-                    <p>Capacity: ${detailedEvent.capacity} participants</p>
-                    <p>Assistence: ${detailedEvent.assistance} participants</p>
+                    <p>Place: ${detailedEvent.place}</p>
+                    <p>Capacity: ${new Intl.NumberFormat('en-US').format(detailedEvent.capacity)} participants</p>
+                    ${assistanceStr}
                     <p>Price: US$ ${detailedEvent.price}</p>
                 </div>
             </div>
         </div>
 
         ` 
-    document.querySelector('main').innerHTML = detailsStr;
+    return document.querySelector('main').innerHTML = detailsStr;
 }
+//********************************************************************************************************************
 
 
-function checkIndex(pastEvents,array, element){
+// Funcion que retorna un array que contiene objetos con nombre y valor de los eventos record de interes
+// Esta funcion esta pensada para devolver los datos de mas de un evento si varios cumplen la condicion de busqueda
+// Requiere 3 parametros: array de eventos a filtar, array con valores de interes, elemento a buscar
+function checkIndex(pastEvents,recordArray, element){
     let indexes=[];
     let results=[];
-    let idx = array.indexOf(element);
+    let idx = recordArray.indexOf(element);
     while (idx != -1) {
         indexes.push(idx);
-        idx = array.indexOf(element, idx + 1);
+        idx = recordArray.indexOf(element, idx + 1);
     }     
     for (let index of indexes){
-        results.push({name:pastEvents[index].name,value:array[index]});
+        results.push({name:pastEvents[index].name,value:recordArray[index]});
     }
     return results;
 }
+//********************************************************************************************************************
 
+
+// Función que genera el código HTML para completar la tabla Event Statistics en la pagina de estadisticas
+// Utiliza la función cardList() para recuperar los eventos filtados de los datos de la API
+// Utiliza la función checkIndex() para recuperar los eventos que cumplen con la condicion de busqueda
 function recordStats(){
-    let pastEvents = cardList("web1");
+    let pastEvents = cardList("web1"); // Asigna el array retornado por la funcion cardList() con el parámetro de eventos pasados ("web1")
     let i=0;
-    let recordArray=[];
-    let recordArray1=[];
+    let recordArrayPCT=[];
+    let recordArrayCap=[];
     for (let event of pastEvents){
-            recordArray[i]=event.assistance/event.capacity;
-            recordArray1[i]=event.capacity;
+            recordArrayPCT[i]=event.assistance/event.capacity;
+            recordArrayCap[i]=event.capacity;
             i++;
     } 
     
-    let element = Math.max(...recordArray)
+    let element = Math.max(...recordArrayPCT)
     let results=[];
-    results.push(checkIndex(pastEvents,recordArray,element));
+    results.push(checkIndex(pastEvents,recordArrayPCT,element)); // Adiciona al array de resultados un array de los eventos con mayor porcentaje de asistencia
     
-    element = Math.min(...recordArray)
-    results.push(checkIndex(pastEvents,recordArray,element));
+    element = Math.min(...recordArrayPCT)
+    results.push(checkIndex(pastEvents,recordArrayPCT,element)); // Adiciona al array de resultados un array de los eventos con menor porcentaje de asistencia
    
     
-    element = Math.max(...recordArray1)
-    results.push(checkIndex(pastEvents,recordArray1,element));
+    element = Math.max(...recordArrayCap)
+    results.push(checkIndex(pastEvents,recordArrayCap,element)); // Adiciona al array de resultados un array de los eventos con mayor capacidad
 
     let recordItems=0;
     for(record of results){
@@ -269,7 +315,7 @@ function recordStats(){
             recordStrArray[1]=`<td></td>`;
         }
         if (results[2][i].name!=''){
-            recordStrArray[2]=`<td>${results[2][i].name}: ${results[2][i].value}</td>`;
+            recordStrArray[2]=`<td>${results[2][i].name}: ${new Intl.NumberFormat('en-US').format(results[2][i].value)}</td>`;
         }else{
             recordStrArray[2]=`<td></td>`;
         }
@@ -281,65 +327,77 @@ function recordStats(){
     }
     return statStr;
 }
+//********************************************************************************************************************
 
 
-
+// Función que genera el código HTML para completar las tablas por categoría para enventos pasado y futuros
+// Requiere el parámetro status de indica se son eventos pasados (valor 0) o eventos futuros (valor 1)
+// Utiliza la función cardList() para recuperar los eventos filtados de los datos de la API
 function stats(status){
     let eventStats =[];
-    let categories = categoryList();
+    let categories = Array.from(categoryList());
     let events={};
     let statStr='';
 
+    // categories.sort();
     switch(status){
         case 0:
             events = cardList("web1");
             for(let category of categories){
-                eventStats.push({name:category,revenue:0,assistance:0, capacity:0,pctAssistance:0})
-                let curretCategory = eventStats[eventStats.length-1];
+                eventStats.push({name:category,revenue:0,pctAssistance:0})
+                let currentCategory = eventStats[eventStats.length-1];
+                let eventsCount=0
                 for(let event of events){
                     if(event.category==category){
-                        curretCategory.revenue += event.price*event.assistance;
-                        curretCategory.assistance += event.assistance;
-                        curretCategory.capacity += event.capacity;
+                        currentCategory.revenue += event.price*event.assistance;
+                        currentCategory.pctAssistance +=(event.assistance/event.capacity);
+                        eventsCount++;
                     }
                 }
-                curretCategory.pctAssistance = ((curretCategory.assistance/ curretCategory.capacity) * 100).toFixed(2) + '%';
-                statStr +=
-                `<tr>
-                    <td>${category}</td>
-                    <td>USD$ ${curretCategory.revenue}</td>
-                    <td>${curretCategory.pctAssistance}</td>
-                </tr>`
+                currentCategory.pctAssistance = ((currentCategory.pctAssistance/eventsCount)*100).toFixed(2) + '%';
+                if (currentCategory.revenue>0){
+                    statStr +=
+                    `<tr>
+                        <td>${category}</td>
+                        <td>USD$ ${new Intl.NumberFormat('en-US').format(currentCategory.revenue)}</td>
+                        <td>${currentCategory.pctAssistance}</td>
+                    </tr>`
+                }
             }
         break;
 
         case 1:
             events = cardList("web2");
             for(let category of categories){
-                eventStats.push({name:category,revenue:0,estimate:0, capacity:0,pctAssistance:0})
-                let curretCategory = eventStats[eventStats.length-1];
+                eventStats.push({name:category,revenue:0,pctAssistance:0})
+                let currentCategory = eventStats[eventStats.length-1];
+                let eventsCount=0
                 for(let event of events){
                     if(event.category==category){
-                        curretCategory.revenue += event.price*event.estimate;
-                        curretCategory.estimate += event.estimate;
-                        curretCategory.capacity += event.capacity;
+                        currentCategory.revenue += event.price*event.estimate;
+                        currentCategory.pctAssistance +=(event.estimate/event.capacity);
+                        eventsCount++;
                     }
                 }
-                curretCategory.pctAssistance = ((curretCategory.estimate/ curretCategory.capacity) * 100).toFixed(2) + '%';
-                statStr +=
-                `<tr>
-                    <td>${category}</td>
-                    <td>USD$ ${curretCategory.revenue}</td>
-                    <td>${curretCategory.pctAssistance}</td>
-                </tr>`
+                currentCategory.pctAssistance = ((currentCategory.pctAssistance/eventsCount)*100).toFixed(2) + '%';
+                if (currentCategory.revenue>0){
+                    statStr +=
+                    `<tr>
+                        <td>${category}</td>
+                        <td>USD$ ${new Intl.NumberFormat('en-US').format(currentCategory.revenue)}</td>
+                        <td>${currentCategory.pctAssistance}</td>
+                    </tr>`
+                }
             }
         break;
     }
-    console.log(eventStats);
+
     return statStr;
 }
+//********************************************************************************************************************
 
 
+// Funcion que agrupa las sentencias generales del codigo que deben cumplirse despues de se se cumple la promesa de evento asincrono
 function mainProgram(){
     const TitleId = document.querySelector('main').id;
 
@@ -381,8 +439,14 @@ function mainProgram(){
     }
 
 }
+//********************************************************************************************************************
 
-const obtainData = async () =>{
+
+// Funcion asincrona que se encarga de recuperar los datos de la API
+// Incluye un try-catch en caso que se presente un error al recuperar los datos de API
+// El caso de error se utiliza el archivo data.JSON inlcuido en la aplicación
+// Utiliza la funcion mainProgram() para continuar el fujo dle programa
+async function obtainData(){
     try{
         const response = await fetch(urlAPI)
         data = await response.json()
@@ -397,7 +461,9 @@ const obtainData = async () =>{
             })
     }
 }
+//********************************************************************************************************************
 
+// Programa principal que llama a la funcion obtainData()
 const urlAPI ="https://mindhub-xj03.onrender.com/api/amazing";
 let data;
 obtainData()
